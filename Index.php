@@ -29,7 +29,9 @@
             include("PoemaServicio.php");
             $contenidoArchivo = Obtener();
             $poemas =  StringToPoema($contenidoArchivo);
-            foreach ($poemas as $poema) {
+            foreach ($poemas as $poema) 
+            {
+                
                 echo '
             <div class="col-md-4 py-2">
                 <div class="card" style="width: 18rem;">
@@ -37,7 +39,7 @@
                     <div class="card-body">
                         <h5 class="card-title">' . $poema->Titulo . '</h5>
                         <p class="card-text">' . $poema->Autor . '</p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-poema="' . $poema->Titulo . ',' . $poema->Autor . ',' . $poema->Poema . '">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="' . $poema->Titulo . '*' . $poema->Autor . '*' . rtrim(ltrim($poema->Poema)) .'">
                             Leer poema
                         </button>
                     </div>
@@ -47,7 +49,7 @@
             ?>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -56,7 +58,10 @@
                         </div>
                         <div class="modal-body">
                             <h6 id="poemaAutor"></h6>
-                            <p id="poemaCuerpo"></p>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control"id="poemaCuerpo" style="height: 250px" disabled></textarea>
+                            </div>
+                 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

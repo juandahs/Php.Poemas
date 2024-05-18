@@ -1,5 +1,6 @@
 <?php
 include("Poema.php");
+ 
 
 function Obtener()
 {
@@ -58,5 +59,5 @@ function PoemaToString($poemas)
     }
 
     //Se retorna el string y se elimina el último caracter ';'
-    return rtrim($poemaString, '*'); 
+    return rtrim($poemaString); 
 }

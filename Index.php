@@ -1,3 +1,8 @@
+<?php 
+    //include("Poema.php"); 
+    include("PoemaServicio.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,31 +20,45 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Poemario.com</a>
-            <button class="btn btn-outline-light" type="submit">Nuevo poema</button>
+            <form action="formulario.php" method="post">
+                <button class="btn btn-outline-light" type="submit" name="BtnMostrar">Nuevo poema</button>
+            </form>
+
 
         </div>
     </nav>
 
     <!--barra navegación fin-->
+    <?php
+
+    if (isset($_POST['BtnAgregar'])) 
+    {
+        $poema = new Poema($_POST['txtNomAutor'], $_POST['txtNomPoema'], $_POST['txtPoema']);
+        $poemas =  StringToPoema(Obtener());
+        array_push($poemas, $poema); 
+        Guardar($poemas);
+    }
+
+    ?>
 
     <div class="container mt-5">
+
         <!--Se imprimen las tarjtas con los poemas-->
         <div class="row">
+
             <?php
-            include("PoemaServicio.php");
             $contenidoArchivo = Obtener();
             $poemas =  StringToPoema($contenidoArchivo);
-            foreach ($poemas as $poema) 
-            {
-                
+            foreach ($poemas as $poema) {
+
                 echo '
             <div class="col-md-4 py-2">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWuzpo0cJCQfNZGw605nH8Kuib6l3YA2-TrXJJh69D9A&s" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">' . $poema->Titulo . '</h5>
                         <p class="card-text">' . $poema->Autor . '</p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="' . $poema->Titulo . '*' . $poema->Autor . '*' . rtrim(ltrim($poema->Poema)) .'">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="' . $poema->Titulo . '*' . $poema->Autor . '*' . rtrim(ltrim($poema->Poema)) . '">
                             Leer poema
                         </button>
                     </div>
@@ -59,9 +78,9 @@
                         <div class="modal-body">
                             <h6 id="poemaAutor"></h6>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control"id="poemaCuerpo" style="height: 250px" disabled></textarea>
+                                <textarea class="form-control" id="poemaCuerpo" style="height: 250px" disabled></textarea>
                             </div>
-                 
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

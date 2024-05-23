@@ -13,7 +13,7 @@
 
 <body>
 
-<?php include('includes/header.html'); ?>
+<?php include('includes/header.php'); ?>
 
 
     <div class="container py-5">
@@ -21,7 +21,7 @@
             <div clas="cols">
                 <div class="card">
                     <div class="card-body py-3">
-                        <form action="InsertarPoema.php" method="post">
+                        <form action="servicios/insertarPoema.php" method="post">
                             <div class="mb-3">
                                 <label for="LblAutor" class="form-label">Ingrese el nombre del autor</label>
                                 <input type="Text" class="form-control" id="TxtNombreAutor" name="TxtNombreAutor" required>               

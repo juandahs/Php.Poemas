@@ -1,14 +1,14 @@
 <?php 
 include('conexion.php');
 
-
 if(isset($_POST['BtnAgregar']))
 {
+    echo "Entro al condicional";
     $autor = $_POST['TxtNombreAutor'];
     $titulo = $_POST['TxtTitulo'];
     $poema = $_POST['TxtPoema'];
 
-    $query = "INSERT INTO Poemas (Autor,Titulo,Poema) VALUES ('$autor','$titulo','$poema')";
+    $query = "INSERT INTO poema (autor,titulo,contenido) VALUES ('$autor','$titulo','$poema')";
     $result = mysqli_query($conexion,$query);
     
     if(!$result)
@@ -23,6 +23,6 @@ if(isset($_POST['BtnAgregar']))
     }
     
     
-    header("location: index.php");
+   header("location: ../index.php");
 
 }

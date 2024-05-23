@@ -6,7 +6,7 @@ include("conexion.php");
     $titulo = $_POST['TxtTitulo'];
     $poema = $_POST['TxtPoema'];   
 
-    $query = "UPDATE Poemas SET Autor='$autor', Titulo='$titulo', Poema='$poema' WHERE id_poemas= $id";
+    $query = "UPDATE poema SET autor='$autor', titulo='$titulo', contenido='$poema' WHERE id= $id";
 
     $result = mysqli_query($conexion,$query);
     if(!$result)
@@ -15,5 +15,5 @@ include("conexion.php");
     }
     $_SESSION['message'] = "Poema insertado correctamente.";
     $_SESSION['message_type'] = "success";
-    header("location: index.php");
+    header("location: ../index.php");
     

@@ -1,26 +1,26 @@
-<?php include("Conexion/ConexionBaseDatos.php");
+<?php include("Servicios/conexion.php");
 // validación
 if (isset($_GET['id'])) {
     
     $id = $_GET['id'];
 
     $query = "SELECT * FROM poema WHERE Id = $id";
-    $result = mysqli_query($Conexion, $Query);
+    $result = mysqli_query($conexion, $query);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        $autor = $row['Autor'];
-        $titulo = $row['Titulo'];
-        $poema =  $row['Poema'];
+        $autor = $row['autor'];
+        $titulo = $row['titulo'];
+        $poema =  $row['contenido'];
     }
 }
 ?>
-<?php include('includes/header.html')?>
+<?php include('includes/header.php')?>
 <div class="container">
     <div class="row py-5">
         <div class="col-md-4 mx-auto">
             <div class="card card-body py-3">
                 <h2 class="mx-auto">Actualizar Poema</h2>
-                <form action="ActualizarPoema.php" method="post">
+                <form action="servicios/actualizarPoema.php" method="post">
                     <div>
                         <input type="hidden" name="TxtIdPoema" value="<?= $id; ?>">
                     </div>

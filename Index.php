@@ -66,7 +66,7 @@ include('Servicios/insertarPoema.php');
                                         <a href="Servicios/EliminarPoema.php?id='.$row['id'].'" class="btn btn-outline-primary" name="EliminarPoema"><i class="material-icons">delete</i></a>
                                     </div>
                                     <div class="col d-flex justify-content-end">
-                                        <a href="Servicios/editarPoema.php?id='.$row['id'].'" class="btn btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                        <a href="editar.php?id='.$row['id'].'" class="btn btn-outline-primary"><i class="material-icons">edit_note</i></a>
                                     </div>
                                 </div>
                             </div>  

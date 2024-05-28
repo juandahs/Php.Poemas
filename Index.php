@@ -27,13 +27,16 @@ $esAdministrador = $_SESSION['role'] == 1;
     <div class="container">
         <div class="row py-3">
             <?php
-            if (isset($_SESSION['message'])) { ?>
+            if (isset($_SESSION['message']) && isset($_SESSION['message_type'])  ) 
+            { ?>
                 <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
                     <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close" style="float: right;"></button>
 
                 </div>
-            <?php session_unset();
+            <?php 
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
             }
             ?>
         </div>

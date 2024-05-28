@@ -1,6 +1,11 @@
 <?php
 include("conexion.php");
 
+  // Verificar si el usuario está autenticado
+  if (!isset($_SESSION["role"])) {
+    header("location: login.php");
+}
+
 if (isset($_GET['id']))
 {
   $id = $_GET['id'];

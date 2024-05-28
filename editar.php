@@ -1,4 +1,7 @@
-<?php include("Servicios/conexion.php");
+<?php 
+include("Servicios/conexion.php");
+ 
+
 // validación
 if (isset($_GET['id'])) {
     

@@ -1,4 +1,9 @@
 <?php 
+
+  // Verificar si el usuario está autenticado
+  if (!isset($_SESSION["role"])) {
+    header("location: login.php");
+}
 include("conexion.php"); 
 
     $id = $_POST['TxtIdPoema'];

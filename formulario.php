@@ -1,3 +1,8 @@
+
+<?php include('includes/header.php');
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +16,6 @@
 
 
 <body>
-
-    <?php include('includes/header.php'); ?>
-
-
     <div class="container py-5">
         <div class="row">
             <div clas="cols">

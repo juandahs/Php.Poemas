@@ -16,4 +16,3 @@ include("conexion.php");
     $_SESSION['message'] = "Poema insertado correctamente.";
     $_SESSION['message_type'] = "success";
     header("location: ../index.php");
-    

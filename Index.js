@@ -11,4 +11,3 @@ document.querySelectorAll('[data-bs-toggle="modal"]').forEach((button) => {
         poemaCuerpo.textContent = row[2];
         });
 });
-    

@@ -1,5 +1,16 @@
-<?php include('Includes/header.php');
-include('Servicios/insertarPoema.php');
+<?php
+session_start();
+
+include('includes/header.php');
+include('Servicios/conexion.php');
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION["role"])) {
+    header("location: login.php");
+}
+
+$esAdministrador = $_SESSION['role'] == 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -16,20 +27,17 @@ include('Servicios/insertarPoema.php');
     <div class="container">
         <div class="row py-3">
             <?php
-            if (isset($_SESSION['message'])) { ?>
-                <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
-                    <?= $_SESSION['message']; ?>
-
+            if (isset($_SESSION['message'])) {?>
+                <div class="alert alert-<?= $_SESSION['message_type'];?>" role="alert">
+                    <?= $_SESSION['message'];?>
                     <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close" style="float: right;"></button>
 
                 </div>
             <?php session_unset();
             }
-            ?>
+           ?>
         </div>
     </div>
-
-
 
     <div class="container py-3 mx-auto">
         <div class="row">
@@ -54,26 +62,26 @@ include('Servicios/insertarPoema.php');
                         <div class="card" style="width: 18rem;">
                             <img src="img/imagenlibro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">' . $row['titulo'] . '</h5>
-                                <p class="card-text">' . $row['autor'] . '</p>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="' . $row["titulo"] . '*' . $row["autor"] . '*' . rtrim(ltrim($row["contenido"])) . '">
+                                <h5 class="card-title">'. $row['titulo']. '</h5>
+                                <p class="card-text">'. $row['autor']. '</p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="'. $row["titulo"]. '*'. $row["autor"]. '*'. rtrim(ltrim($row["contenido"])). '">
                                     Leer poema
                                 </button>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col">
-                                        <a href="Servicios/EliminarPoema.php?id='.$row['id'].'" class="btn btn-outline-primary" name="EliminarPoema"><i class="material-icons">delete</i></a>
+                                        <a href="Servicios/EliminarPoema.php?id='. $row['id']. '" class="btn btn-outline-primary" name="EliminarPoema"><i class="material-icons">delete</i></a>
                                     </div>
                                     <div class="col d-flex justify-content-end">
-                                        <a href="editar.php?id='.$row['id'].'" class="btn btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                        <a href="editar.php?id='. $row['id']. '" class="btn btn-outline-primary"><i class="material-icons">edit_note</i></a>
                                     </div>
                                 </div>
                             </div>  
                         </div>
                     </div>';
             }
-            ?>
+           ?>
         </div>
     </div>
 
@@ -98,10 +106,9 @@ include('Servicios/insertarPoema.php');
         </div>
     </div>
 
-    <script src="Index.js"></script>
+    <script src="index.js"></script>
 
-
-    <?php include("includes/footer.php") ?>
+    <?php include("includes/footer.php")?>
 </body>
 
 </html>

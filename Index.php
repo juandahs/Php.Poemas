@@ -27,28 +27,33 @@ $esAdministrador = $_SESSION['role'] == 1;
     <div class="container">
         <div class="row py-3">
             <?php
-            if (isset($_SESSION['message'])) {?>
-                <div class="alert alert-<?= $_SESSION['message_type'];?>" role="alert">
-                    <?= $_SESSION['message'];?>
+            if (isset($_SESSION['message'])) { ?>
+                <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
+                    <?= $_SESSION['message']; ?>
                     <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close" style="float: right;"></button>
 
                 </div>
             <?php session_unset();
             }
-           ?>
+            ?>
         </div>
     </div>
 
     <div class="container py-3 mx-auto">
-        <div class="row">
-            <div class="card card-body">
-                <div class="d-flex justify-content-end">
-                    <form action="formulario.php">
-                        <button class="btn btn-outline-success" type="submit">Nuevo poema</button>
-                    </form>
-                </div>
+
+        <?php
+        if ($esAdministrador) {
+            echo
+            "<div class='row'>
+            <div class='d-flex justify-content-end'>
+                <form action='formulario.php'>
+                    <button class='btn btn-primary' type='submit'>Nuevo poema</button>
+                </form>
             </div>
-        </div>
+        </div>";
+        }
+
+        ?>
 
         <!--Impresión de la tabla de poemas -->
         <div class="row">
@@ -62,26 +67,29 @@ $esAdministrador = $_SESSION['role'] == 1;
                         <div class="card" style="width: 18rem;">
                             <img src="img/imagenlibro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">'. $row['titulo']. '</h5>
-                                <p class="card-text">'. $row['autor']. '</p>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="'. $row["titulo"]. '*'. $row["autor"]. '*'. rtrim(ltrim($row["contenido"])). '">
+                                <h5 class="card-title">' . $row['titulo'] . '</h5>
+                                <p class="card-text">' . $row['autor'] . '</p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-poema="' . $row["titulo"] . '*' . $row["autor"] . '*' . rtrim(ltrim($row["contenido"])) . '">
                                     Leer poema
                                 </button>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="Servicios/EliminarPoema.php?id='. $row['id']. '" class="btn btn-outline-primary" name="EliminarPoema"><i class="material-icons">delete</i></a>
+                            </div>';
+                if ($esAdministrador) {
+                    echo '<div class="card-footer">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="Servicios/EliminarPoema.php?id=' . $row['id'] . '" class="btn btn-outline-primary" name="EliminarPoema"><i class="material-icons">delete</i></a>
+                                        </div>
+                                        <div class="col d-flex justify-content-end">
+                                            <a href="editar.php?id=' . $row['id'] . '" class="btn btn-outline-primary"><i class="material-icons">edit_note</i></a>
+                                        </div>
                                     </div>
-                                    <div class="col d-flex justify-content-end">
-                                        <a href="editar.php?id='. $row['id']. '" class="btn btn-outline-primary"><i class="material-icons">edit_note</i></a>
-                                    </div>
-                                </div>
-                            </div>  
+                                </div>';
+                }
+                echo '
                         </div>
                     </div>';
             }
-           ?>
+            ?>
         </div>
     </div>
 
@@ -108,7 +116,7 @@ $esAdministrador = $_SESSION['role'] == 1;
 
     <script src="index.js"></script>
 
-    <?php include("includes/footer.php")?>
+    <?php include("includes/footer.php") ?>
 </body>
 
 </html>

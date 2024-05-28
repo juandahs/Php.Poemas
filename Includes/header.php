@@ -22,18 +22,11 @@
       </a>
       <ul class="navbar-nav mb-4 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page">
+          <a class="nav-link active" aria-current="page" href="index.php">
             <h3>Poemario</h3>
           </a>
         </li>
-      </ul>
-      <ul class="navbar-nav mb-4 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">
-            <h3>Inicio</h3>
-          </a>
-        </li>
-      </ul>
+      </ul>      
       <ul class="navbar-nav mb-4 mb-lg-0">
         <li class="nav-item">
           <a href="servicios/sesionCerrar.php" aria-current="page" class="nav-link active">

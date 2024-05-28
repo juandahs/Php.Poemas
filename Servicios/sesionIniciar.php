@@ -10,26 +10,18 @@ if (isset($_POST['TxtNombre']) && isset($_POST['Contraseña'])) {
     $query = "SELECT * FROM Usuario WHERE nombre='$nombre' AND contrasena='$contraseña'";
     $result = mysqli_query($conexion, $query);
 
+    session_start();
     // Verificar si se encontró un usuario
-    if ($row = $result->fetch_assoc()) {
-        // Iniciar sesión y guardar el rol del usuario
-        session_start();
+    if ($row = $result->fetch_assoc()) 
+    {        
         $_SESSION['role'] = $row['idRol'] == 1;
-
-        // Redirigir al index.php según el rol del usuario
-        if ($_SESSION['role']) {
-            header("location:../Index.php");
-            exit;
-        } else {
-            header("location:../Index.php");
-            exit;
-        }
-    } else {
-        // Mostrar mensaje de error si no se encontró un usuario
-       ?>
-        <h1 class="bad">ERROR DE AUTENTIFICACIÓN</h1>
-        <?php
+    } 
+    else
+    {
+        $_SESSION["message"] = "Usuario o clave  incorrecta.";
+     
     }
+    header("location: ../index.php");
 }
 
 mysqli_free_result($result);

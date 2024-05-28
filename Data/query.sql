@@ -45,4 +45,5 @@ ENGINE = InnoDB;
 INSERT INTO poema(autor, titulo, contenido) VALUES ("Autor del poema", "EL titulo...", "El mejor poema del mundo...");
 INSERT INTO rol(nombre) VALUES("ADMIN");
 INSERT INTO rol(nombre) VALUES("USER");
-INSERT INTO usuario(idRol, nombre, apellido, contrasena) VALUES(1, "nombre de usuario", "apelldo del usuario", "admin123");
+INSERT INTO usuario(idRol, nombre, apellido, contrasena) VALUES(1, "admin", "apellido", "admin123");
+INSERT INTO usuario(idRol, nombre, apellido, contrasena) VALUES(2, "usuario", "apellido", "123456");
